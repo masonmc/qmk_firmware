@@ -1,5 +1,16 @@
 #include QMK_KEYBOARD_H
 
+// TOOLS:
+// QMK toolbox - to download complied hex file to keyboard CPU
+// https://beta.docs.qmk.fm/newbs/newbs_getting_started
+
+// to build: Use MSYS2 to compile
+// Start > MSYS2 MinGW 64-bit
+// cd /c/code/melody96QMKFork (or wherever)
+// make melody96:mason
+
+
+
 // MJM to preserve the pretty alignment, below
 #define KC_PRVT KC_MEDIA_PREV_TRACK
 #define KC_NXTT KC_MEDIA_NEXT_TRACK
@@ -17,7 +28,7 @@ enum custom_keycodes
   MK_CF4,
   MK_MIN,
   MK_MAX,
-  MK_TASK,
+  MK_TASK,  
   MK_NOTEPAD,
   MK_CMDPROMPT,
   MK_SPOTIFY,
@@ -25,7 +36,10 @@ enum custom_keycodes
   MK_VS,
   MK_EVERNOTE,
   MK_STNG,
-  MK_WEBB
+  MK_WEBB,
+  MK_NOTE,
+  MK_WNTB,
+  MK_CSF13
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -33,10 +47,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* Layer 0, default layer
 ____________________________________________________________________________________________________________________________________________________________________________
 |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |
-| ESC*   |   F1   |   F2   |   F3   |   F4   |   F5   |   F6   |   F7   |   F8   |   F9   |  F10   |  F11   |  F12   | P SCN  |        | layer3 |  MAX   | CtrlF4 |  AltF4 |
+| ESC*   |   F1   |   F2   |   F3   |   F4   |   F5   |   F6   |   F7   |   F8   |   F9   |  F10   |  F11   |  F12   | P SCN  | WINTAB |  MIN   |  MAX   | CtrlF4 |  AltF4 |
 |________|________|________|________|________|________|________|________|________|________|________|________|________|________|________|________|________|________|________|
 |        |        |        |        |        |        |        |        |        |        |        |        |        |        | BACK   |        |        |        |        |
-|  ~`    |   1    |   2    |   3    |   4    |   5    |   6    |   7    |   8    |   9    |   0    |  _ -   | =  +   |   \    | SPACE  | COMP   | CALC   |  TASK  |  MIN   |
+|  ~`    |   1    |   2    |   3    |   4    |   5    |   6    |   7    |   8    |   9    |   0    |  _ -   | =  +   |   \    | SPACE  | COMP   | CALC   | NOTE   | layer3 |
 |________|________|________|________|________|________|________|________|________|________|________|________|________|________|________|________|________|________|________|
 |            |        |        |        |        |        |        |        |        |        |        |  [     |   ]    |             |        |        |        | RGBLED |
 |    TAB     |   Q    |   W    |   E    |   R    |   T    |   Y    |   U    |   I    |   O    |   P    |  {     |   }    |  |   \      |  INS   |  HOME  |  PGUP  | toggle |
@@ -45,18 +59,18 @@ ________________________________________________________________________________
 |   CAPS LOCK  |   A    |   S    |   D    |   F    |   G    |   H    |   J    |   K    |   L    |   :    |   "    |       ENTER        |  DEL   |  END   |  PGDN  | layer2 |
 |______________|________|________|________|________|________|________|________|________|________|________|________|____________________|________|________|________|________|
 |         |        |        |        |        |        |        |        |        |   ,    |    .   |   /    |                |        |        |        |        | bklgt  |
-|  SHIFT  |  NUBS  |   Z    |   X    |   C    |   V    |   B    |   N    |   M    |   <    |    >   |   ?    |       SHIFT    | VOL +  |  DEL   |   UP   | PRIOR  | toggle |
+|  SHIFT  |  NUBS  |   Z    |   X    |   C    |   V    |   B    |   N    |   M    |   <    |    >   |   ?    |       TASK     | VOL +  |  DEL   |   UP   | PRIOR  | toggle |
 |_________|________|________|________|________|________|________|________|________|________|________|________|________________|________|________|________|________|________|
 |          |          |          |                                                        |        | Play   |        |        |        |        |        |        |        |
 | CTRL     |   LGUI   | L ALT    |                      SPACE                             | < Trk  | Pause  |  Trk > |  MUTE  | VOL -  |  LEFT  | DOWN   | RIGHT  | layer1 |
 |__________|__________|__________|________________________________________________________|________|________|________|________|________|________|________|________|________|
 */
 	LAYOUT(
-    KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_PSCR, _______, MO(3),   MK_MAX,  MK_CF4,   MK_AF4,
-    KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSLS, KC_BSPC, KC_COMP, KC_CALC, MK_TASK,  MK_MIN,
+    KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_PSCR, MK_WNTB, MK_MIN,  MK_MAX,  MK_CF4,   MK_AF4,
+    KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSLS, KC_BSPC, KC_COMP, KC_CALC, MK_NOTE,  MO(3),
     KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS,          KC_INS,  KC_HOME, KC_PGUP,  RGB_TOG,
     KC_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, KC_ENT,                    KC_DEL,  KC_END,  KC_PGDN,  MO(2),
-    KC_LSFT, KC_NUBS, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,          KC_VOLU, KC_DEL,  KC_UP,   KC_WBAK, BL_TOGG,
+    KC_LSFT, KC_NUBS, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, MK_TASK,          KC_VOLU, KC_DEL,  KC_UP,   KC_WBAK,  BL_TOGG,
     KC_LCTL, KC_LGUI, KC_LALT,                            KC_SPC,                             KC_PRVT, KC_PLPA, KC_NXTT, KC_MUTE, KC_VOLD, KC_LEFT, KC_DOWN, KC_RGHT,  MO(1)),
 
 
@@ -75,8 +89,8 @@ ________________________________________________________________________________
 |              |        |        |        |        |        |        |        |        |        |        |        |                    |        |  Ctrl  |        |        |
 |              |        |        |        |        |        |        |        |        |        |        |        |                    |   F20  |  F13   |  F19   |        |
 |______________|________|________|________|________|________|________|________|________|________|________|________|____________________|________|________|________|________|
-|         |        |        |        |        |        |        |        |        |        |        |        |                |        |        |        |        |        |
-|         |        |        |        |        |        |        |        |        |        |        |        |                |        |   F13  |  F15   |  F14   |        |
+|         |        |        |        |        |        |        |        |        |        |        |        |                |        |        |CTRL+   |        |        |
+|         |        |        |        |        |        |        |        |        |        |        |        |   R-SHIFT      |        |   F13  |SHFT+F13|  F14   |        |
 |_________|________|________|________|________|________|________|________|________|________|________|________|________________|________|________|________|________|________|
 |          |          |          |                                                        |        |        |        |        |        |  Ctrl+ | Ctrl+  |  Ctrl  |        |
 |          |          |          |                                                        |        |        |        |        |        |  F20   | F14    |  F19   |        |
@@ -87,7 +101,7 @@ ________________________________________________________________________________
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,                   KC_F20 , MK_CF13, KC_F19 , _______,
-    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, KC_F13 , KC_F15 , KC_F14 , _______,
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_RSFT,          _______, KC_F13 , MK_CSF13, KC_F14 , _______,
     _______, _______, _______,                            _______,                            _______, _______, _______, _______, _______, MK_CF20, MK_CF14, MK_CF19, _______),
 
 
@@ -222,7 +236,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             case MK_WEBB:
                 SEND_STRING(SS_TAP(X_LGUI)"Google Chrome"SS_TAP(X_ENTER));
                 return false;
-
+            case MK_NOTE:
+                SEND_STRING(SS_TAP(X_LGUI)"sublime text"SS_TAP(X_ENTER));
+                return false;
+            case MK_WNTB:
+                SEND_STRING(SS_LWIN(SS_TAP(X_TAB)));  // Win+Tab
+                return false;
+            case MK_CSF13:
+                SEND_STRING( SS_DOWN(X_LSHIFT) SS_DOWN(X_LCTRL) SS_TAP(X_F13) SS_UP(X_LSHIFT) SS_UP(X_LCTRL) ); // Ctrl+Shift+F13
+                return false;
         }
     }
     return true;
